@@ -64,7 +64,7 @@ export default function App() {
 										}`}
 									>
 										<span>{faqItem.question}</span>
-										<div
+										<span
 											className={`ml-auto mr-2 ${
 												idx === selectedFaqItemIdx && 'scale-y-[-1]'
 											}`}
@@ -73,7 +73,7 @@ export default function App() {
 												src='./assets/images/icon-arrow-down.svg'
 												alt='arrow-down'
 											/>
-										</div>
+										</span>
 									</h3>
 									{idx === selectedFaqItemIdx && (
 										<p className='text-[12px] pb-4 w-11/12 text-veryDarkGrayishBlue'>

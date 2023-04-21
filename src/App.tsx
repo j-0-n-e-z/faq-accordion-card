@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { faq } from './faq-data'
+import React from 'react'
 
 export default function App() {
 	const [selectedFaqItemIdx, setSelectedFaqItemIdx] = useState<
@@ -16,9 +17,17 @@ export default function App() {
 
 	return (
 		<main className='w-full min-h-screen grid place-items-center bg-gradient-to-b from-softViolet to-softBlue'>
-			<article className='flex w-[920px] h-[510px] bg-white ml-10 rounded-3xl card-shadow'>
-				<section className='w-1/2 h-full relative'>
-					<div className='h-full w-full relative overflow-hidden z-0'>
+			<article className='flex lg:flex-row flex-col lg:w-[920px] w-[88%] lg:h-[510px] bg-white lg:ml-10 lg:mt-0 mt-16 rounded-3xl card-shadow'>
+				<section className='lg:w-1/2 h-full relative'>
+					<div className='flex relative justify-center h-28 w-full lg:hidden bg-mobile bg-no-repeat bg-mobilePosition'>
+						<div className='absolute -top-[108px] w-60'>
+							<img
+								src='./assets/images/illustration-woman-online-mobile.svg'
+								alt='illustration'
+							/>
+						</div>
+					</div>
+					<div className='h-full w-full relative overflow-hidden z-0 lg:block hidden'>
 						<div className='w-max h-max absolute right-[70px] -top-[295px]'>
 							<img
 								src='./assets/images/bg-pattern-desktop.svg'
@@ -32,49 +41,52 @@ export default function App() {
 							/>
 						</div>
 					</div>
-					<div className='absolute -left-[93px] top-[40%] z-10'>
+					<div className='absolute -left-[93px] top-[40%] z-10 lg:block hidden'>
 						<img src='./assets/images/illustration-box-desktop.svg' alt='box' />
 					</div>
 				</section>
-				<section className='font-["Kumbh_Sans"] w-1/2 pt-[60px] px-4'>
-					<h2 className='text-veryDarkDesaturatedBlue text-[32px] font-bold'>
+				<section className='font-["Kumbh_Sans"] lg:w-1/2 lg:pt-[60px] pt-5 lg:px-4 px-6'>
+					<h2 className='text-veryDarkDesaturatedBlue text-[32px] font-bold lg:text-start text-center'>
 						FAQ
 					</h2>
-					<ul className='w-4/5 mt-8 [&>:first-child>h3]:pt-0'>
+					<ul className='lg:w-4/5 lg:mt-8 mt-6 [&>:first-child>h3]:pt-0'>
 						{faq.map((faqItem, idx) => (
-							<li
-								key={faqItem.question}
-								className='cursor-pointer'
-								onClick={() => handleFaqItemClick(idx)}
-							>
-								<h3
-									className={`flex items-center text-sm text-veryDarkDesaturatedBlue ${
-										idx === selectedFaqItemIdx
-											? 'font-bold pb-2 pt-[15px]'
-											: 'font-normal py-[15px]'
-									}`}
+							<React.Fragment key={faqItem.question}>
+								<li
+									className='cursor-pointer'
+									onClick={() => handleFaqItemClick(idx)}
 								>
-									<span>{faqItem.question}</span>
-									<div
-										className={`ml-auto mr-2 ${
-											idx === selectedFaqItemIdx && 'scale-y-[-1]'
+									<h3
+										className={`flex items-center lg:text-sm text-[13px] text-veryDarkDesaturatedBlue ${
+											idx === selectedFaqItemIdx
+												? 'font-bold pb-2 lg:pt-[15px] pt-4'
+												: 'font-normal lg:py-[15px] py-4'
 										}`}
 									>
-										<img
-											src='./assets/images/icon-arrow-down.svg'
-											alt='arrow-down'
-										/>
-									</div>
-								</h3>
-								{idx === selectedFaqItemIdx && (
-									<p className='text-[12px] pb-4 text-veryDarkGrayishBlue'>
-										{faqItem.answer}
-									</p>
-								)}
-								{idx !== faq.length - 1 && (
-									<hr className='bg-lightGrayishBlue' />
-								)}
-							</li>
+										<span>{faqItem.question}</span>
+										<div
+											className={`ml-auto mr-2 ${
+												idx === selectedFaqItemIdx && 'scale-y-[-1]'
+											}`}
+										>
+											<img
+												src='./assets/images/icon-arrow-down.svg'
+												alt='arrow-down'
+											/>
+										</div>
+									</h3>
+									{idx === selectedFaqItemIdx && (
+										<p className='text-[12px] pb-4 w-11/12 text-veryDarkGrayishBlue'>
+											{faqItem.answer}
+										</p>
+									)}
+								</li>
+								<hr
+									className={`bg-lightGrayishBlue ${
+										idx === faq.length - 1 && 'lg:hidden block lg:mb-0 mb-12'
+									}`}
+								/>
+							</React.Fragment>
 						))}
 					</ul>
 				</section>

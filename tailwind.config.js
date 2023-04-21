@@ -11,6 +11,12 @@ export default {
 				veryDarkGrayishBlue: 'hsl(237, 12%, 33%)',
 				darkGrayishBlue: 'hsl(240, 6%, 50%)',
 				lightGrayishBlue: 'hsl(240, 5%, 91%)'
+			},
+			backgroundImage: {
+				mobile: 'url(./assets/images/bg-pattern-mobile.svg)'
+			},
+			backgroundPosition: {
+				mobilePosition: '50% 70%'
 			}
 		}
 	},

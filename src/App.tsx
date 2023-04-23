@@ -18,7 +18,7 @@ export default function App() {
 	return (
 		<main className='w-full min-h-screen grid place-items-center bg-gradient-to-b from-softViolet to-softBlue'>
 			<article className='flex lg:flex-row flex-col lg:w-[920px] w-[88%] lg:h-[510px] bg-white lg:ml-10 lg:mt-0 mt-16 rounded-3xl card-shadow'>
-				<section className='lg:w-1/2 h-full relative'>
+				<div className='lg:w-1/2 h-full relative'>
 					<div className='flex relative justify-center h-28 w-full lg:hidden bg-mobile bg-no-repeat bg-mobilePosition'>
 						<div className='absolute -top-[108px] w-60'>
 							<img
@@ -44,8 +44,8 @@ export default function App() {
 					<div className='absolute -left-[93px] top-[40%] z-10 lg:block hidden'>
 						<img src='./assets/images/illustration-box-desktop.svg' alt='box' />
 					</div>
-				</section>
-				<section className='font-["Kumbh_Sans"] lg:w-1/2 lg:pt-[60px] pt-5 lg:px-4 px-6'>
+				</div>
+				<div className='font-["Kumbh_Sans"] lg:w-1/2 lg:pt-[60px] pt-5 lg:px-4 px-6'>
 					<h2 className='text-veryDarkDesaturatedBlue text-[32px] font-bold lg:text-start text-center'>
 						FAQ
 					</h2>
@@ -89,7 +89,7 @@ export default function App() {
 							</React.Fragment>
 						))}
 					</ul>
-				</section>
+				</div>
 			</article>
 		</main>
 	)

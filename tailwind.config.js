@@ -13,7 +13,7 @@ export default {
 				lightGrayishBlue: 'hsl(240, 5%, 91%)'
 			},
 			backgroundImage: {
-				mobile: 'url(./assets/images/bg-pattern-mobile.svg)'
+				mobile: "url('/assets/images/bg-pattern-mobile.svg')"
 			},
 			backgroundPosition: {
 				mobilePosition: '50% 70%'

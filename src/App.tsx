@@ -47,7 +47,7 @@ export default function App() {
 									setOpenedFaqIdx(faqIdx === openedFaqIdx ? undefined : faqIdx)
 								}
 							>
-								<h3
+								<div
 									className={`flex items-center lg:text-sm text-[13px] text-veryDarkDesaturatedBlue ${
 										faqIdx === openedFaqIdx
 											? 'font-bold pb-2 lg:pt-[15px] pt-4'
@@ -55,17 +55,14 @@ export default function App() {
 									}`}
 								>
 									<span>{faq.question}</span>
-									<span
+									<img
 										className={`ml-auto mr-2 transition-transform duration-200 ${
 											faqIdx === openedFaqIdx ? 'rotate-180' : ''
 										}`}
-									>
-										<img
-											src='./assets/images/icon-arrow-down.svg'
-											alt='arrow-down'
-										/>
-									</span>
-								</h3>
+										src='./assets/images/icon-arrow-down.svg'
+										alt='arrow-down'
+									/>
+								</div>
 								{faqIdx === openedFaqIdx && (
 									<p className='text-[12px] pb-4 w-11/12 text-veryDarkGrayishBlue'>
 										{faq.answer}

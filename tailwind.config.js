@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
@@ -17,6 +19,9 @@ export default {
 			},
 			backgroundPosition: {
 				mobilePosition: '50% 70%'
+			},
+			fontFamily: {
+				KumbhSans: ['Kumbh Sans', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},

@@ -42,7 +42,9 @@ export default function App() {
 						{faqs.map((faq, faqIdx) => (
 							<li
 								key={faq.question}
-								className='cursor-pointer'
+								className={`cursor-pointer ${
+									faqIdx === faqs.length - 1 ? 'mb-12' : ''
+								}`}
 								onClick={() =>
 									setOpenedFaqIdx(faqIdx === openedFaqIdx ? undefined : faqIdx)
 								}
@@ -68,11 +70,7 @@ export default function App() {
 										{faq.answer}
 									</p>
 								)}
-								<hr
-									className={`bg-lightGrayishBlue ${
-										faqIdx === faqs.length - 1 ? 'mb-12' : ''
-									}`}
-								/>
+								<hr className='bg-lightGrayishBlue' />
 							</li>
 						))}
 					</ul>

@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { faqs } from './faqs-data'
 
 export default function App() {
 	const [openedFaqIdx, setOpenedFaqIdx] = useState<number | undefined>(1)
+	const [accordionHeights, setAccordionHeights] = useState<number[]>([])
+
+	useEffect(() => {
+		const accordions = document.querySelectorAll('.accordion')
+		setAccordionHeights([...accordions].map(element => element.scrollHeight))
+	}, [openedFaqIdx])
 
 	return (
-		<main className='w-full min-h-screen grid place-items-center bg-gradient-to-b from-softViolet to-softBlue py-20'>
+		<main className='w-full min-h-screen grid place-items-center bg-gradient-to-b from-softViolet to-softBlue'>
 			<section className='flex lg:flex-row flex-col lg:w-[920px] w-[88%] lg:h-[510px] bg-white lg:ml-10 lg:mt-0 mt-16 rounded-3xl card-shadow'>
 				<div className='lg:w-1/2 h-full relative'>
 					<div className='flex relative justify-center h-28 w-full lg:hidden bg-mobile bg-no-repeat bg-mobilePosition'>
@@ -38,25 +44,23 @@ export default function App() {
 					<h1 className='text-veryDarkDesaturatedBlue text-[32px] font-bold lg:text-start text-center'>
 						FAQ
 					</h1>
-					<ul className='lg:w-4/5 lg:mt-8 mt-6 [&>:first-child>h3]:pt-0'>
+					<ul className='lg:w-4/5 lg:mt-8 mt-6 [&>:first-child>div]:pt-0'>
 						{faqs.map((faq, faqIdx) => (
 							<li
 								key={faq.question}
 								className={`cursor-pointer ${
-									faqIdx === faqs.length - 1 ? 'mb-12' : ''
+									faqIdx === faqs.length - 1 ? 'mb-12' : 'mb-0'
 								}`}
 								onClick={() =>
 									setOpenedFaqIdx(faqIdx === openedFaqIdx ? undefined : faqIdx)
 								}
 							>
 								<div
-									className={`flex items-center lg:text-sm text-[13px] text-veryDarkDesaturatedBlue ${
-										faqIdx === openedFaqIdx
-											? 'font-bold pb-2 lg:pt-[15px] pt-4'
-											: 'font-normal lg:py-[15px] py-4'
+									className={`flex items-center lg:text-sm text-[13px] text-veryDarkDesaturatedBlue transition hover:text-softRed lg:pt-[15px] py-4 ${
+										faqIdx === openedFaqIdx ? 'font-bold' : 'font-normal'
 									}`}
 								>
-									<span>{faq.question}</span>
+									<span className=''>{faq.question}</span>
 									<img
 										className={`ml-auto mr-2 transition-transform duration-200 ${
 											faqIdx === openedFaqIdx ? 'rotate-180' : ''
@@ -65,11 +69,17 @@ export default function App() {
 										alt='arrow-down'
 									/>
 								</div>
-								{faqIdx === openedFaqIdx && (
-									<p className='text-[12px] pb-4 w-11/12 text-veryDarkGrayishBlue'>
-										{faq.answer}
-									</p>
-								)}
+								<p
+									className={`accordion overflow-hidden duration-500 transition-[height] text-[12px] w-11/12 text-veryDarkGrayishBlue`}
+									style={{
+										height:
+											faqIdx === openedFaqIdx
+												? `${accordionHeights[faqIdx] + 16}px`
+												: '0',
+									}}
+								>
+									{faq.answer}
+								</p>
 								<hr className='bg-lightGrayishBlue' />
 							</li>
 						))}
